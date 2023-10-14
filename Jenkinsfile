@@ -121,7 +121,7 @@ pipeline {
             }
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'snyk container test xenjutsu/nodejsgoof:0.1 --exclude-app-vulns > snyk-scan-docker-image-report.txt'
+                    sh 'snyk container test izzatbey/nodejs-goof:0.1 --exclude-app-vulns > snyk-scan-docker-image-report.txt'
                 }
                 sh 'cat snyk-scan-docker-image-report.txt'
                 archiveArtifacts artifacts: 'snyk-scan-docker-image-report.txt'
@@ -136,7 +136,7 @@ pipeline {
             }
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push xenjutsu/nodejsgoof:0.1'
+                sh 'docker push izzatbey/nodejs-goof:0.1'
             }
         }
         stage('Deploy Docker Image') {
