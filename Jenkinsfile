@@ -148,10 +148,10 @@ pipeline {
             }
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: "DeploymentSSHKey", keyFileVariable: 'keyfile')]) {
-                    sh 'ssh -v -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"'
-                    sh 'ssh -v -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker pull izzatbey/nodejs-goof:0.1'
-                    sh 'ssh -v -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker rm --force nodejs-goof'
-                    sh 'ssh -v -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker run -it --detach -p 4000:4000 --name nodejs-goof --network host izzatbey/nodejs-goof:0.1'
+                    sh 'ssh -vv- -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"'
+                    sh 'ssh -vv- -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker pull izzatbey/nodejs-goof:0.1'
+                    sh 'ssh -vv- -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker rm --force nodejs-goof'
+                    sh 'ssh -vv- -i ${keyfile} -o StrictHostKeyChecking=no izzatbey@192.168.1.105 docker run -it --detach -p 4000:4000 --name nodejs-goof --network host izzatbey/nodejs-goof:0.1'
                 }
             }
         }
