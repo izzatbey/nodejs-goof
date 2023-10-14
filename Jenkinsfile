@@ -109,7 +109,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -t xenjutsu/nodejsgoof:0.1 .'
+                sh 'docker build -t izzatbey/nodejs-goof:0.1 .'
             }
         }
         stage('SCA Snyk Scan Docker Image') {
